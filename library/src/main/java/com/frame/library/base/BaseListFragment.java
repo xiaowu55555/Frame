@@ -11,6 +11,7 @@ import com.frame.library.R;
 import com.frame.library.app.BaseApplication;
 import com.frame.library.utils.NetworkUtils;
 import com.frame.library.utils.ToastUtil;
+import com.frame.library.widget.MultipleStatusView;
 
 import java.util.List;
 
@@ -22,7 +23,6 @@ public abstract class BaseListFragment<V, T extends BaseViewModel> extends BaseF
     protected BaseQuickAdapter<V, BaseViewHolder> adapter;
     protected int pageIndex = 0;
     protected int pageSize = 20;
-    protected boolean isFirstRequest = true;
 
     @Override
     protected int getLayoutRes() {
@@ -47,14 +47,18 @@ public abstract class BaseListFragment<V, T extends BaseViewModel> extends BaseF
             swipeRefreshLayout.setOnRefreshListener(this);
         }
         if (statusView != null) {
+            statusView.showLoading();
             statusView.setOnRetryClickListener(v -> {
-                isFirstRequest = true;
+                statusView.showLoading();
                 requestData();
             });
         }
     }
 
     protected void setListData(List<V> list) {
+        if (statusView != null && statusView.getViewStatus() == MultipleStatusView.STATUS_LOADING) {
+            statusView.showContent();
+        }
         if (swipeRefreshLayout.isRefreshing()) {
             swipeRefreshLayout.setRefreshing(false);
         }
@@ -119,14 +123,12 @@ public abstract class BaseListFragment<V, T extends BaseViewModel> extends BaseF
 
     @Override
     public void onLoadMoreRequested() {
-        isFirstRequest = false;
         pageIndex++;
         requestData();
     }
 
     @Override
     public void onRefresh() {
-        isFirstRequest = false;
         adapter.setEnableLoadMore(false);
         pageIndex = 0;
         requestData();

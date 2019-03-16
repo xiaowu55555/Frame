@@ -27,7 +27,7 @@ public class Fragment1 extends BaseListFragment<Article.DatasBean, Fragment1VM> 
 
     @Override
     protected void requestData() {
-        viewModel.getData(pageIndex, isFirstRequest).observe(this, this::setListData);
+        viewModel.getData(pageIndex).observe(this, this::setListData);
     }
 
     @Override

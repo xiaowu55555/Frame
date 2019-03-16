@@ -54,6 +54,9 @@ public abstract class BaseFragment<T extends BaseViewModel> extends Fragment {
     private void observeActionEvent() {
         if (viewModel != null) {
             viewModel.getAction().observe(this, actionEvent -> {
+                if (statusView != null && statusView.getViewStatus() == MultipleStatusView.STATUS_LOADING) {
+                    statusView.showContent();
+                }
                 switch (actionEvent.getAction()) {
                     case ActionEvent.SHOW_LOADING:
                         showLoading();
@@ -73,15 +76,9 @@ public abstract class BaseFragment<T extends BaseViewModel> extends Fragment {
     }
 
     protected void hideLoading() {
-        if (statusView != null) {
-            statusView.showContent();
-        }
     }
 
     protected void showLoading() {
-        if (statusView != null) {
-            statusView.showLoading();
-        }
     }
 
     protected void showError(String message) {

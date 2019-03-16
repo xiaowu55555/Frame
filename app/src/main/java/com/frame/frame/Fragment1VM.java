@@ -16,11 +16,11 @@ public class Fragment1VM extends BaseViewModel {
         super(application);
     }
 
-    public MutableLiveData<List<Article.DatasBean>> getData(int page, boolean needLoading) {
+    public MutableLiveData<List<Article.DatasBean>> getData(int page) {
         MutableLiveData<List<Article.DatasBean>> data = new MutableLiveData<>();
         apiService.getArticleList(page)
                 .compose(RxTransformer.applySchedulers())
-                .subscribe(new RxSubscriber<Article>(this, needLoading) {
+                .subscribe(new RxSubscriber<Article>(this) {
                     @Override
                     public void onSuccess(Article article) {
                         data.setValue(article.getDatas());
