@@ -1,5 +1,7 @@
 package com.frame.library.base;
 
+import android.arch.lifecycle.Observer;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -132,5 +134,13 @@ public abstract class BaseListFragment<V, T extends BaseViewModel> extends BaseF
         adapter.setEnableLoadMore(false);
         pageIndex = 0;
         requestData();
+    }
+
+    public class ListObserver implements Observer<List<V>> {
+
+        @Override
+        public void onChanged(@Nullable List<V> vs) {
+            setListData(vs);
+        }
     }
 }
