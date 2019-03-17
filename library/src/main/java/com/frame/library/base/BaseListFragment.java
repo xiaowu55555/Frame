@@ -19,7 +19,7 @@ import java.util.List;
 
 public abstract class BaseListFragment<V, T extends BaseViewModel> extends BaseFragment<T> implements
         BaseQuickAdapter.RequestLoadMoreListener,
-        SwipeRefreshLayout.OnRefreshListener {
+        SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.OnItemClickListener {
     protected RecyclerView recyclerView;
     protected SwipeRefreshLayout swipeRefreshLayout;
     protected BaseQuickAdapter<V, BaseViewHolder> adapter;
@@ -38,6 +38,7 @@ public abstract class BaseListFragment<V, T extends BaseViewModel> extends BaseF
         recyclerView.setLayoutManager(getLayoutManager());
         adapter = getAdapter();
         recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(this);
         adapter.setEnableLoadMore(enableLoadMore());
         if (enableLoadMore()) {
             adapter.setOnLoadMoreListener(this, recyclerView);
@@ -56,6 +57,16 @@ public abstract class BaseListFragment<V, T extends BaseViewModel> extends BaseF
             });
         }
     }
+
+    @Override
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        V item = this.adapter.getItem(position);
+        if (item != null) {
+            onItemClick(item);
+        }
+    }
+
+    protected abstract void onItemClick(V item);
 
     protected void setListData(List<V> list) {
         if (statusView != null && statusView.getViewStatus() == MultipleStatusView.STATUS_LOADING) {

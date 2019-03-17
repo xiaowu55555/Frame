@@ -3,6 +3,7 @@
     <item name="swipeRefreshLayout" type="id" />
     <item name="recyclerView" type="id" />
     <item name="stateful_layout" type="id" />
+    <item name="web_view" type="id" />
 
     <item name="empty_view" type="id"/>
     <item name="error_view" type="id"/>
