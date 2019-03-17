@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.frame.library.R;
-import com.frame.library.app.BaseApplication;
 import com.frame.library.event.ActionEvent;
+import com.frame.library.core.Library;
 import com.frame.library.utils.NetworkUtils;
 import com.frame.library.utils.ToastUtil;
 import com.frame.library.widget.MultipleStatusView;
@@ -84,7 +84,7 @@ public abstract class BaseFragment<T extends BaseViewModel> extends Fragment {
     protected void showError(String message) {
         ToastUtil.showToast(message);
         if (statusView != null) {
-            if (!NetworkUtils.isNetworkAvailable(BaseApplication.getInstance())) {
+            if (!NetworkUtils.isNetworkAvailable(Library.getInstance().getContext())) {
                 statusView.showNoNetwork();
             } else {
                 statusView.showError();

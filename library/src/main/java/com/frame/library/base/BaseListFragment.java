@@ -10,7 +10,7 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.frame.library.R;
-import com.frame.library.app.BaseApplication;
+import com.frame.library.core.Library;
 import com.frame.library.utils.NetworkUtils;
 import com.frame.library.utils.ToastUtil;
 import com.frame.library.widget.MultipleStatusView;
@@ -88,7 +88,7 @@ public abstract class BaseListFragment<V, T extends BaseViewModel> extends BaseF
         }
         adapter.setEnableLoadMore(enableLoadMore());
         if (pageIndex == 0 && statusView != null) {
-            if (!NetworkUtils.isNetworkAvailable(BaseApplication.getInstance())) {
+            if (!NetworkUtils.isNetworkAvailable(Library.getInstance().getContext())) {
                 statusView.showNoNetwork();
             } else {
                 statusView.showError();

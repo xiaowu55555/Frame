@@ -4,8 +4,8 @@ import android.app.Application;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
+import com.frame.frame.entity.Article;
 import com.frame.library.base.BaseViewModel;
-import com.frame.library.entity.Article;
 import com.frame.library.net.RxSubscriber;
 import com.frame.library.net.RxTransformer;
 
@@ -18,7 +18,7 @@ public class Fragment1VM extends BaseViewModel {
 
     public MutableLiveData<List<Article.DatasBean>> getData(int page) {
         MutableLiveData<List<Article.DatasBean>> data = new MutableLiveData<>();
-        apiService.getArticleList(page)
+        App.getInstance().getApi().getArticleList(page)
                 .compose(RxTransformer.applySchedulers())
                 .subscribe(new RxSubscriber<Article>(this) {
                     @Override

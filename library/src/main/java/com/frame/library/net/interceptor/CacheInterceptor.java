@@ -1,8 +1,7 @@
 package com.frame.library.net.interceptor;
 
-import com.frame.library.app.BaseApplication;
+import com.frame.library.core.Library;
 import com.frame.library.utils.NetworkUtils;
-import com.frame.library.utils.ToastUtil;
 
 import java.io.IOException;
 
@@ -34,7 +33,7 @@ public class CacheInterceptor implements Interceptor {
 //                        .build();
 
         //方案二：无网读缓存，有网根据过期时间重新请求
-        boolean netWorkConection = NetworkUtils.isNetworkAvailable(BaseApplication.getInstance().getApplicationContext());
+        boolean netWorkConection = NetworkUtils.isNetworkAvailable(Library.getInstance().getContext().getApplicationContext());
         Request request = chain.request();
         if (!netWorkConection) {
             request = request.newBuilder()

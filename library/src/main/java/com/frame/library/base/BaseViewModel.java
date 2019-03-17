@@ -7,8 +7,6 @@ import android.support.annotation.NonNull;
 
 import com.frame.library.event.ActionEvent;
 import com.frame.library.event.IViewModelAction;
-import com.frame.library.net.ApiService;
-import com.frame.library.net.HttpClient;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -17,11 +15,9 @@ public class BaseViewModel extends AndroidViewModel implements IViewModelAction 
 
     private MutableLiveData<ActionEvent> actionEventMutableLiveData;
     private CompositeDisposable mCompositeDisposable;
-    protected ApiService apiService;
 
     public BaseViewModel(@NonNull Application application) {
         super(application);
-        apiService = HttpClient.getInstance().getApiService();
         actionEventMutableLiveData = new MutableLiveData<>();
     }
 
@@ -32,27 +28,27 @@ public class BaseViewModel extends AndroidViewModel implements IViewModelAction 
 
     @Override
     public void showLoading(String message) {
-        actionEventMutableLiveData.setValue(new ActionEvent(ActionEvent.SHOW_LOADING, message));
+        actionEventMutableLiveData.postValue(new ActionEvent(ActionEvent.SHOW_LOADING, message));
     }
 
     @Override
     public void hideLoading() {
-        actionEventMutableLiveData.setValue(new ActionEvent(ActionEvent.HIDE_LOADING, null));
+        actionEventMutableLiveData.postValue(new ActionEvent(ActionEvent.HIDE_LOADING, null));
     }
 
     @Override
     public void showToast(String message) {
-        actionEventMutableLiveData.setValue(new ActionEvent(ActionEvent.SHOW_TOAST, message));
+        actionEventMutableLiveData.postValue(new ActionEvent(ActionEvent.SHOW_TOAST, message));
     }
 
     @Override
     public void showError(String message) {
-        actionEventMutableLiveData.setValue(new ActionEvent(ActionEvent.SHOW_ERROR, message));
+        actionEventMutableLiveData.postValue(new ActionEvent(ActionEvent.SHOW_ERROR, message));
     }
 
     @Override
     public void needLogin() {
-        actionEventMutableLiveData.setValue(new ActionEvent(ActionEvent.NEED_LOGIN, null));
+        actionEventMutableLiveData.postValue(new ActionEvent(ActionEvent.NEED_LOGIN, null));
     }
 
     @Override
