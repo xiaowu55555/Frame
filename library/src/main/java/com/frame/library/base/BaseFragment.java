@@ -14,7 +14,9 @@ import com.frame.library.event.ActionEvent;
 import com.frame.library.core.Library;
 import com.frame.library.utils.NetworkUtils;
 import com.frame.library.utils.ToastUtil;
+import com.frame.library.widget.LoadingPopup;
 import com.frame.library.widget.MultipleStatusView;
+import com.lxj.xpopup.XPopup;
 
 public abstract class BaseFragment<T extends BaseViewModel> extends Fragment {
 
@@ -76,9 +78,14 @@ public abstract class BaseFragment<T extends BaseViewModel> extends Fragment {
     }
 
     protected void hideLoading() {
+        XPopup.get(context).dismiss();
     }
 
     protected void showLoading() {
+        XPopup.get(context)
+                .asCustom(new LoadingPopup(context))
+                .dismissOnTouchOutside(false)
+                .show();
     }
 
     protected void showError(String message) {

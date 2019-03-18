@@ -10,7 +10,9 @@ import com.frame.library.event.ActionEvent;
 import com.frame.library.core.Library;
 import com.frame.library.utils.NetworkUtils;
 import com.frame.library.utils.ToastUtil;
+import com.frame.library.widget.LoadingPopup;
 import com.frame.library.widget.MultipleStatusView;
+import com.lxj.xpopup.XPopup;
 
 public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatActivity {
     protected Context context;
@@ -60,9 +62,14 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
     }
 
     protected void hideLoading() {
+        XPopup.get(context).dismiss();
     }
 
     protected void showLoading() {
+        XPopup.get(context)
+                .asCustom(new LoadingPopup(context))
+                .dismissOnTouchOutside(false)
+                .show();
     }
 
     protected void showError(String message) {
@@ -79,4 +86,6 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
     protected abstract void initView(Bundle savedInstanceState);
 
     protected abstract T createViewModel();
+
+
 }

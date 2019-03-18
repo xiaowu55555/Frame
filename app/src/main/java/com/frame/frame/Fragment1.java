@@ -2,13 +2,11 @@ package com.frame.frame;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.util.Log;
-import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.frame.frame.entity.Article;
 import com.frame.library.base.BaseListFragment;
-import com.just.agentweb.LogUtils;
 
 public class Fragment1 extends BaseListFragment<Article.DatasBean, Fragment1VM> {
 
