@@ -1,4 +1,4 @@
-package com.frame.library.entity;
+package com.frame.frame.entity;
 
 import android.text.TextUtils;
 

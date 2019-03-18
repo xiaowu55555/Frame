@@ -1,8 +1,7 @@
 package com.frame.library.net;
 
 
-
-import com.frame.library.app.BaseApplication;
+import com.frame.library.core.Library;
 import com.frame.library.net.interceptor.CacheInterceptor;
 import com.frame.library.net.interceptor.HttpInterceptor;
 
@@ -20,9 +19,6 @@ public class HttpClient {
     private static final int DEFAULT_TIME = 10;
     private static HttpClient mInstance;
 
-    /**
-     * 单例模式
-     */
     public static HttpClient getInstance() {
         if (mInstance == null) {
             synchronized (HttpClient.class) {
@@ -34,17 +30,11 @@ public class HttpClient {
         return mInstance;
     }
 
-    /**
-     * 初始化必要对象和参数
-     *
-     * @param url 基础baseUrl
-     * @return
-     */
-    public Retrofit getRetrofit(String url) {
+    private Retrofit getRetrofit(String url) {
         // 初始化okhttp
         CacheInterceptor cacheInterceptor = new CacheInterceptor();
         //设置缓存路径
-        File httpCacheDirectory = new File(BaseApplication.getInstance().getCacheDir(), "HttpCache");
+        File httpCacheDirectory = new File(Library.getInstance().getContext().getCacheDir(), "HttpCache");
         //设置缓存 10M
         Cache cache = new Cache(httpCacheDirectory, 10 * 1024 * 1024);
         OkHttpClient client = new OkHttpClient().newBuilder()
@@ -66,8 +56,8 @@ public class HttpClient {
                 .build();
     }
 
-    public ApiService getApiService() {
-        return getInstance().getRetrofit(ApiService.BASE_URL).create(ApiService.class);
-    }
 
+    public <T> T getApiService(String url, Class<T> service) {
+        return getRetrofit(url).create(service);
+    }
 }

@@ -1,15 +1,14 @@
-package com.frame.library.net;
+package com.frame.frame;
 
 
-import com.frame.library.entity.Article;
-
-import java.util.List;
+import com.frame.frame.entity.Article;
+import com.frame.library.net.HttpResult;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-public interface ApiService {
+public interface AppService {
     String BASE_URL = "http://www.wanandroid.com/";
 
     //    //获取首页banner

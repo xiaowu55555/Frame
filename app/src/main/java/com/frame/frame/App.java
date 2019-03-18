@@ -1,6 +1,27 @@
 package com.frame.frame;
 
-import com.frame.library.app.BaseApplication;
+import android.app.Application;
 
-public class App extends BaseApplication {
+import com.frame.library.core.Library;
+
+
+public class App extends Application {
+
+    private AppService appService;
+    private static App instance;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        instance = this;
+        appService = Library.getInstance().init(this, AppService.BASE_URL, AppService.class);
+    }
+
+    public AppService getApi() {
+        return appService;
+    }
+
+    public static App getInstance() {
+        return instance;
+    }
 }

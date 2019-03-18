@@ -6,8 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.frame.library.R;
-import com.frame.library.app.BaseApplication;
 import com.frame.library.event.ActionEvent;
+import com.frame.library.core.Library;
 import com.frame.library.utils.NetworkUtils;
 import com.frame.library.utils.ToastUtil;
 import com.frame.library.widget.MultipleStatusView;
@@ -68,7 +68,7 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
     protected void showError(String message) {
         ToastUtil.showToast(message);
         if (statusView != null) {
-            if (!NetworkUtils.isNetworkAvailable(BaseApplication.getInstance())) {
+            if (!NetworkUtils.isNetworkAvailable(Library.getInstance().getContext())) {
                 statusView.showNoNetwork();
             } else {
                 statusView.showError();
