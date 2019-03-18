@@ -42,9 +42,9 @@ public class HttpClient {
                 .connectTimeout(DEFAULT_TIME, TimeUnit.SECONDS)//设置请求超时时间
                 .writeTimeout(DEFAULT_TIME, TimeUnit.SECONDS)//设置写入超时时间
                 .addInterceptor(new HttpInterceptor())
-                .addNetworkInterceptor(cacheInterceptor)
-                .addInterceptor(cacheInterceptor)
-                .cache(cache)
+//                .addNetworkInterceptor(cacheInterceptor)
+//                .addInterceptor(cacheInterceptor)
+//                .cache(cache)
                 .retryOnConnectionFailure(true)//设置出现错误进行重新连接。
                 .build();
         // 初始化Retrofit
