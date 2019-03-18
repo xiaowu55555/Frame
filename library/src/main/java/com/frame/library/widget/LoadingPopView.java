@@ -2,18 +2,17 @@ package com.frame.library.widget;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.view.View;
 import android.widget.TextView;
 
 import com.frame.library.R;
 import com.lxj.xpopup.core.CenterPopupView;
 import com.lxj.xpopup.util.XPopupUtils;
 
-public class LoadingPopup extends CenterPopupView {
+public class LoadingPopView extends CenterPopupView {
 
     private String title;
 
-    public LoadingPopup(@NonNull Context context) {
+    public LoadingPopView(@NonNull Context context) {
         super(context);
     }
 
@@ -40,7 +39,7 @@ public class LoadingPopup extends CenterPopupView {
         tv_title.setText(title == null ? "加载中..." : title);
     }
 
-    public LoadingPopup setTitle(String title) {
+    public LoadingPopView setTitle(String title) {
         this.title = title;
         return this;
     }

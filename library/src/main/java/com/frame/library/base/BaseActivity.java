@@ -10,7 +10,7 @@ import com.frame.library.event.ActionEvent;
 import com.frame.library.Library;
 import com.frame.library.utils.NetworkUtils;
 import com.frame.library.utils.ToastUtil;
-import com.frame.library.widget.LoadingPopup;
+import com.frame.library.widget.LoadingPopView;
 import com.frame.library.widget.MultipleStatusView;
 import com.lxj.xpopup.XPopup;
 
@@ -67,7 +67,7 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
 
     protected void showLoading() {
         XPopup.get(context)
-                .asCustom(new LoadingPopup(context))
+                .asCustom(new LoadingPopView(context))
                 .dismissOnTouchOutside(false)
                 .show();
     }
