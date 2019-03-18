@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.frame.library.R;
 import com.frame.library.event.ActionEvent;
-import com.frame.library.core.Library;
+import com.frame.library.Library;
 import com.frame.library.utils.NetworkUtils;
 import com.frame.library.utils.ToastUtil;
 import com.frame.library.widget.LoadingPopup;

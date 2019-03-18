@@ -2,7 +2,7 @@ package com.frame.library.utils;
 
 import android.widget.Toast;
 
-import com.frame.library.core.Library;
+import com.frame.library.Library;
 
 public class ToastUtil {
 

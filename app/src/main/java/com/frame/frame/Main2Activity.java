@@ -19,7 +19,6 @@ public class Main2Activity extends WebViewActivity {
 
     @Override
     protected ViewGroup getWebContentView() {
-        showLoading();
         FrameLayout frameLayout = findViewById(R.id.fl_content);
         return frameLayout;
     }

@@ -1,4 +1,4 @@
-package com.frame.library.core;
+package com.frame.library;
 
 import android.app.Application;
 import com.frame.library.net.HttpClient;

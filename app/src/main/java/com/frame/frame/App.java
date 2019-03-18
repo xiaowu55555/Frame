@@ -2,7 +2,7 @@ package com.frame.frame;
 
 import android.app.Application;
 
-import com.frame.library.core.Library;
+import com.frame.library.Library;
 
 
 public class App extends Application {

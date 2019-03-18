@@ -1,6 +1,6 @@
 package com.frame.library.net.interceptor;
 
-import com.frame.library.core.Library;
+import com.frame.library.Library;
 import com.frame.library.utils.NetworkUtils;
 
 import java.io.IOException;

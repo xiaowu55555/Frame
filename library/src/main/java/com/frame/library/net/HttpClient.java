@@ -1,7 +1,7 @@
 package com.frame.library.net;
 
 
-import com.frame.library.core.Library;
+import com.frame.library.Library;
 import com.frame.library.net.interceptor.CacheInterceptor;
 import com.frame.library.net.interceptor.HttpInterceptor;
 
