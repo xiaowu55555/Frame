@@ -2,9 +2,17 @@ package com.frame.library.net;
 
 
 import com.frame.library.base.BaseViewModel;
+import com.google.gson.JsonParseException;
+
+import org.json.JSONException;
+
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import retrofit2.HttpException;
 
 
 public abstract class RxSubscriber<T> implements Observer<T> {
@@ -46,13 +54,29 @@ public abstract class RxSubscriber<T> implements Observer<T> {
         if (showLoading) {
             viewModel.hideLoading();
         }
+        ApiException ex;
         if (e instanceof ApiException) {
-            ApiException ex = (ApiException) e;
+            ex = (ApiException) e;
             if (ex.isNeedLogin()) {
                 viewModel.needLogin();
             }
+        } else if (e instanceof UnknownHostException) {
+            ex = new ApiException("没有网络");
+        } else if (e instanceof HttpException) {
+            ex = new ApiException("网络错误");
+        } else if (e instanceof SocketTimeoutException) {
+            ex = new ApiException("网络连接超时");
+        } else if (e instanceof JsonParseException
+                || e instanceof JSONException) {
+            ex = new ApiException("解析错误");
+        } else if (e instanceof ConnectException) {
+            ex = new ApiException("连接失败");
+        } else if (e instanceof javax.net.ssl.SSLHandshakeException) {
+            ex = new ApiException("证书验证失败");
+        } else {
+            ex = new ApiException(e.getMessage());
         }
-        onFailed(e);
+        onFailed(ex);
     }
 
     @Override

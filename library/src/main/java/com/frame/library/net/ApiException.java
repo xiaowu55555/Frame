@@ -16,7 +16,13 @@ public class ApiException extends RuntimeException {
         this.msg = result.getErrorMsg();
     }
 
-    public String getMsg() {
+    public ApiException(String msg) {
+        this.msg = msg;
+    }
+
+
+    @Override
+    public String getMessage() {
         return msg;
     }
 
