@@ -14,7 +14,9 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        appService = Library.getInstance().init(this, AppService.BASE_URL, AppService.class);
+        appService = Library.getInstance().init(this)
+                .setBaseUrl(AppService.BASE_URL)
+                .setApiClass(AppService.class);
     }
 
     public AppService getApi() {

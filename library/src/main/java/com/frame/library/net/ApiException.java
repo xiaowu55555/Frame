@@ -11,7 +11,7 @@ public class ApiException extends RuntimeException {
     private int code;
     private String msg;
 
-    public ApiException(HttpResult result) {
+    public ApiException(IApiResult result) {
         this.code = result.getErrorCode();
         this.msg = result.getErrorMsg();
     }

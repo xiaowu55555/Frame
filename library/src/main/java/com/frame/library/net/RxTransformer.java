@@ -18,7 +18,7 @@ public class RxTransformer {
      * @param <T>
      * @return
      */
-    public static <T> ObservableTransformer<HttpResult<T>, T> applySchedulers() {
+    public static <T> ObservableTransformer<IApiResult<T>, T> applySchedulers() {
         return observable -> observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

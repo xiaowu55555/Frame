@@ -2,7 +2,6 @@ package com.frame.frame;
 
 
 import com.frame.frame.entity.Article;
-import com.frame.library.net.HttpResult;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
