@@ -44,7 +44,7 @@ public abstract class BaseListFragment<V, T extends BaseViewModel> extends BaseF
             adapter.setOnLoadMoreListener(this, recyclerView);
             adapter.disableLoadMoreIfNotFullPage();
         }
-        if (enableRefresh()) {
+        if (enableRefresh() && swipeRefreshLayout != null) {
             swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
             swipeRefreshLayout.post(() -> swipeRefreshLayout.setRefreshing(true));
             swipeRefreshLayout.setOnRefreshListener(this);
